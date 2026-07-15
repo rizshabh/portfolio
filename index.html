@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=18.0">
+  <link rel="stylesheet" href="style.css?v=19.0">
 </head>
 <body>
 
@@ -169,182 +169,104 @@
           <div class="page-subtitle">Selected software developments and applications</div>
         </div>
 
-        <!-- Scrollable Bento Container -->
+        <!-- Projects Grid -->
         <div class="projects-scroll-container fade-target-delayed">
           <div class="projects-grid">
-            
-            <!-- PROJECT 01: INTELLITRIP (Large Bento Card) -->
-            <div class="project-card large">
-              <div class="project-card-content">
-                <div class="project-meta">
+
+            <!-- PROJECT 01: INTELLITRIP -->
+            <div class="project-card">
+              <div class="project-card-preview">
+                <img src="intellitrip.png" alt="IntelliTrip">
+              </div>
+              <div class="project-card-body">
+                <div class="project-card-tags">
                   <span class="project-tag">AI · Full-Stack</span>
-                  <span class="project-status">COMPLETED</span>
+                  <span class="project-tag">Node.js</span>
                 </div>
-                
-                <div class="project-metric">3s</div>
-                <div class="project-metric-label">AI Generation Speed</div>
-                
-                <h3>IntelliTrip</h3>
-                <p class="project-sub">AI Travel Assistant</p>
-                <p class="project-desc">Designed and built an AI-powered itinerary platform with a dual-LLM fallback system (Gemini → Groq) so generation continues uninterrupted during API outages or rate limits.</p>
-                
-                <div class="project-feats">
-                  <div class="project-feat"><i class="fa-solid fa-arrow-right"></i> Dual-LLM API redundancy setup</div>
-                  <div class="project-feat"><i class="fa-solid fa-arrow-right"></i> JWT auth &amp; receipt budget tracker</div>
-                  <div class="project-feat"><i class="fa-solid fa-arrow-right"></i> UML data model &amp; PDF exports</div>
+                <h3 class="project-card-title">IntelliTrip</h3>
+                <p class="project-card-desc">AI-powered itinerary platform with a dual-LLM fallback system (Gemini → Groq) so generation continues uninterrupted during API outages or rate limits.</p>
+                <div class="project-card-footer">
+                  <a href="https://intellitrip-3yzx.onrender.com/index.html" target="_blank" class="project-view-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                  <a href="https://github.com/rizshabh" target="_blank" class="project-gh-link"><i class="fa-brands fa-github"></i></a>
                 </div>
-                
-                <div class="project-stack">
-                  <span class="stack-tag">Node.js</span>
-                  <span class="stack-tag">PostgreSQL</span>
-                  <span class="stack-tag">Gemini AI</span>
-                  <span class="stack-tag">Groq</span>
-                  <span class="stack-tag">JWT</span>
-                </div>
-                
-                <div class="project-links">
-                  <a href="https://intellitrip-3yzx.onrender.com/index.html" target="_blank" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-                  <a href="https://github.com/rizshabh" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Repository</a>
-                </div>
-              </div>
-              <div class="project-card-image">
-                <img src="intellitrip.png" alt="IntelliTrip Screen">
               </div>
             </div>
 
-            <!-- PROJECT 02: FLOWCHAT (Large Bento Card) -->
-            <div class="project-card large">
-              <div class="project-card-content">
-                <div class="project-meta">
+            <!-- PROJECT 02: FLOWCHAT -->
+            <div class="project-card">
+              <div class="project-card-preview">
+                <img src="flowchat.png" alt="FlowChat">
+              </div>
+              <div class="project-card-body">
+                <div class="project-card-tags">
                   <span class="project-tag">WebSockets</span>
-                  <span class="project-status">COMPLETED</span>
+                  <span class="project-tag">React</span>
                 </div>
-                
-                <div class="project-metric">100ms</div>
-                <div class="project-metric-label">Real-Time Latency</div>
-                
-                <h3>FlowChat</h3>
-                <p class="project-sub">Real-Time Messaging Site</p>
-                <p class="project-desc">A full-stack real-time chat application built with WebSocket protocols. Utilizes Mongoose proxy handlers for transparent auto-routing database failover logs.</p>
-                
-                <div class="project-feats">
-                  <div class="project-feat"><i class="fa-solid fa-arrow-right"></i> Socket.io delivery &amp; typing indicators</div>
-                  <div class="project-feat"><i class="fa-solid fa-arrow-right"></i> MongoDB to Local JSON fallback proxy</div>
-                  <div class="project-feat"><i class="fa-solid fa-arrow-right"></i> Live user status list &amp; read indicators</div>
+                <h3 class="project-card-title">FlowChat</h3>
+                <p class="project-card-desc">Full-stack real-time chat application built with WebSocket protocols. Live delivery, typing indicators, and MongoDB-to-JSON fallback proxy for zero-downtime resilience.</p>
+                <div class="project-card-footer">
+                  <a href="https://flow-chat-omega.vercel.app/" target="_blank" class="project-view-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                  <a href="https://github.com/rizshabh/flow-chat" target="_blank" class="project-gh-link"><i class="fa-brands fa-github"></i></a>
                 </div>
-                
-                <div class="project-stack">
-                  <span class="stack-tag">React</span>
-                  <span class="stack-tag">Node.js</span>
-                  <span class="stack-tag">Express</span>
-                  <span class="stack-tag">Socket.io</span>
-                  <span class="stack-tag">MongoDB</span>
-                </div>
-                
-                <div class="project-links">
-                  <a href="https://flow-chat-omega.vercel.app/" target="_blank" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-                  <a href="https://github.com/rizshabh/flow-chat" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Repository</a>
-                </div>
-              </div>
-              <div class="project-card-image">
-                <img src="flowchat.png" alt="FlowChat Screen">
               </div>
             </div>
 
-            <!-- PROJECT 03: ACCREDIAN ENTERPRISE (Medium Bento Card) -->
-            <div class="project-card medium">
-              <div class="project-card-content">
-                <div class="project-meta">
+            <!-- PROJECT 03: ACCREDIAN ENTERPRISE -->
+            <div class="project-card">
+              <div class="project-card-preview">
+                <img src="accredian.png" alt="Accredian Enterprise">
+              </div>
+              <div class="project-card-body">
+                <div class="project-card-tags">
                   <span class="project-tag">Next.js 14</span>
-                  <span class="project-status">COMPLETED</span>
+                  <span class="project-tag">TypeScript</span>
                 </div>
-                
-                <div class="project-metric">95%</div>
-                <div class="project-metric-label">User Adoption Rate</div>
-                
-                <h3>Accredian Enterprise</h3>
-                <p class="project-sub">Full-Stack Landing Page</p>
-                <p class="project-desc">Shipped a production-ready responsive landing portal. Structured with Next.js App Router modular components and lead capture REST endpoints.</p>
-                
-                <div class="project-feats">
-                  <div class="project-feat"><i class="fa-solid fa-arrow-right"></i> Next.js 14 App Router layout structure</div>
-                  <div class="project-feat"><i class="fa-solid fa-arrow-right"></i> Lead capture POST route API endpoint</div>
+                <h3 class="project-card-title">Accredian Enterprise</h3>
+                <p class="project-card-desc">Production-ready responsive landing portal built with Next.js App Router. Includes modular components and a lead capture REST API endpoint.</p>
+                <div class="project-card-footer">
+                  <a href="https://accredian-enterprise-three.vercel.app" target="_blank" class="project-view-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                  <a href="https://github.com/rizshabh" target="_blank" class="project-gh-link"><i class="fa-brands fa-github"></i></a>
                 </div>
-                
-                <div class="project-stack">
-                  <span class="stack-tag">Next.js 14</span>
-                  <span class="stack-tag">TypeScript</span>
-                  <span class="stack-tag">Tailwind CSS</span>
-                </div>
-                
-                <div class="project-links">
-                  <a href="https://accredian-enterprise-three.vercel.app" target="_blank" class="project-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-                  <a href="https://github.com/rizshabh" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Repository</a>
-                </div>
-              </div>
-              <div class="project-card-image">
-                <img src="accredian.png" alt="Accredian Enterprise Screen">
               </div>
             </div>
 
-            <!-- PROJECT 04: VIDEO DOWNLOADER (Medium Bento Card) -->
-            <div class="project-card medium">
-              <div class="project-meta">
-                <span class="project-tag">Automation</span>
-                <span class="project-status">COMPLETED</span>
+            <!-- PROJECT 04: UNIVERSAL DOWNLOADER -->
+            <div class="project-card">
+              <div class="project-card-preview project-card-preview--placeholder" style="--ph-color-a: #7c3aed; --ph-color-b: #1e1b4b;">
+                <div class="project-placeholder-icon"><i class="fa-solid fa-download"></i></div>
+                <span class="project-placeholder-label">Universal Downloader</span>
               </div>
-              
-              <div class="project-metric">10x</div>
-              <div class="project-metric-label">Extraction Speed Boost</div>
-              
-              <h3>Universal Downloader</h3>
-              <p class="project-sub">Media Extraction Infrastructure</p>
-              <p class="project-desc">Engineered a robust downloading pipeline with Puppeteer bypass layers. Containerized with Docker and configured with Google AdSense integrations.</p>
-              
-              <div class="project-feats">
-                <div class="project-feat"><i class="fa-solid fa-arrow-right"></i> Puppeteer + yt-dlp multi-tier bypass routing</div>
-                <div class="project-feat"><i class="fa-solid fa-arrow-right"></i> Docker containers cloud deployments</div>
-              </div>
-              
-              <div class="project-stack">
-                <span class="stack-tag">Node.js</span>
-                <span class="stack-tag">Puppeteer</span>
-                <span class="stack-tag">yt-dlp</span>
-                <span class="stack-tag">Docker</span>
-              </div>
-              
-              <div class="project-links">
-                <a href="https://github.com/rizshabh/UniversalDownload" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Repository</a>
+              <div class="project-card-body">
+                <div class="project-card-tags">
+                  <span class="project-tag">Automation</span>
+                  <span class="project-tag">Docker</span>
+                </div>
+                <h3 class="project-card-title">Universal Downloader</h3>
+                <p class="project-card-desc">Robust media extraction pipeline with Puppeteer bypass layers. Containerized with Docker and configured with Google AdSense integrations for 10× extraction speed.</p>
+                <div class="project-card-footer">
+                  <a href="https://github.com/rizshabh/UniversalDownload" target="_blank" class="project-view-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                  <a href="https://github.com/rizshabh/UniversalDownload" target="_blank" class="project-gh-link"><i class="fa-brands fa-github"></i></a>
+                </div>
               </div>
             </div>
 
-            <!-- PROJECT 05: COVALENT MINDS PORTAL (Medium Bento Card) -->
-            <div class="project-card medium">
-              <div class="project-meta">
-                <span class="project-tag">Firebase</span>
-                <span class="project-status">COMPLETED</span>
+            <!-- PROJECT 05: COVALENT MINDS ACADEMY -->
+            <div class="project-card">
+              <div class="project-card-preview project-card-preview--placeholder" style="--ph-color-a: #0f766e; --ph-color-b: #134e4a;">
+                <div class="project-placeholder-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <span class="project-placeholder-label">Covalent Minds</span>
               </div>
-              
-              <div class="project-metric">150+</div>
-              <div class="project-metric-label">Active Portal Students</div>
-              
-              <h3>Covalent Minds Academy</h3>
-              <p class="project-sub">Educational Portal</p>
-              <p class="project-desc">Designed a course portal featuring cloud deliveries. Implemented separate admin and student views with Firestore real-time layout updates.</p>
-              
-              <div class="project-feats">
-                <div class="project-feat"><i class="fa-solid fa-arrow-right"></i> Firestore real-time data sync listeners</div>
-                <div class="project-feat"><i class="fa-solid fa-arrow-right"></i> Dynamic student &amp; admin content dashboards</div>
-              </div>
-              
-              <div class="project-stack">
-                <span class="stack-tag">JavaScript</span>
-                <span class="stack-tag">Firebase</span>
-                <span class="stack-tag">Firestore</span>
-              </div>
-              
-              <div class="project-links">
-                <a href="https://github.com/rizshabh" target="_blank" class="project-link"><i class="fa-brands fa-github"></i> Repository</a>
+              <div class="project-card-body">
+                <div class="project-card-tags">
+                  <span class="project-tag">Firebase</span>
+                  <span class="project-tag">JavaScript</span>
+                </div>
+                <h3 class="project-card-title">Covalent Minds Academy</h3>
+                <p class="project-card-desc">Course portal with Firestore real-time sync, separate admin and student dashboards, and cloud-delivered content for 150+ active students.</p>
+                <div class="project-card-footer">
+                  <a href="https://github.com/rizshabh" target="_blank" class="project-view-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                  <a href="https://github.com/rizshabh" target="_blank" class="project-gh-link"><i class="fa-brands fa-github"></i></a>
+                </div>
               </div>
             </div>
 
