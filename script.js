@@ -2,6 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize loader flow: add loading state to body
   document.body.classList.add('loading');
 
+  // Animate the percentage counter to match the progress bar (1850ms)
+  const pct = document.querySelector('.loader-percent');
+  if (pct) {
+    const duration = 1850;
+    const start = performance.now();
+    function updatePct(now) {
+      const elapsed = Math.min(now - start, duration);
+      const value = Math.round((elapsed / duration) * 100);
+      pct.textContent = value + '%';
+      if (elapsed < duration) requestAnimationFrame(updatePct);
+    }
+    requestAnimationFrame(updatePct);
+  }
+
   // Fade out loader overlay after boot animation completes
   setTimeout(() => {
     document.body.classList.remove('loading');
