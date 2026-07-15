@@ -1803,7 +1803,7 @@ body.loaded #circular-nav {
   pointer-events: none;
   transform: translateY(-50%) translateX(-12px);
   position: absolute;
-  right: 60px;
+  right: 92px;
   left: auto;
   top: 50%;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1996,7 +1996,7 @@ footer {
     height: 470px;
   }
   .circular-nav-indicator {
-    right: 237px;
+    right: 262px;
   }
 }
 

@@ -569,10 +569,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function layoutWheelItems() {
     radius = getWheelRadius();
     wheelItems.forEach((item, index) => {
-      const angleDeg = index * angleSpacing;
+      const angleDeg = -index * angleSpacing; // Negate to place downstream sections below Home
       const angleRad = (angleDeg * Math.PI) / 180;
       const x = radius * Math.cos(angleRad);
-      const y = radius * Math.sin(angleRad); // Positive Y: items go clockwise (down then around) on the visible left half
+      const y = radius * Math.sin(angleRad);
       
       item.style.setProperty('--item-x', `${x}px`);
       item.style.setProperty('--item-y', `${y}px`);
@@ -599,7 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (wheelTrack) {
       // Rotate so active item aligns to 180° (pointing left into content)
-      const targetAngle = 180 - activeIdx * angleSpacing;
+      const targetAngle = 180 + activeIdx * angleSpacing;
       
       // Calculate shortest angular distance for rotation loop
       let diff = (targetAngle - currentWheelRotation) % 360;
