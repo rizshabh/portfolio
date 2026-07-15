@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Tech assets
     const languages = ['React', 'Node.js', 'Python', 'TypeScript', 'Next.js', 'PostgreSQL', 'Docker', 'Firebase', 'MongoDB', 'SQL', 'JWT'];
-    const devices = ['💻', '📱', '💾', '⚙️', '☁️', '⚡', '</>', '🚀', '🔑', '📊'];
+    const iconTypes = ['brackets', 'terminal', 'database', 'cloud', 'server', 'cog'];
 
     document.addEventListener('mousemove', e => {
       mouseX = e.clientX;
@@ -155,6 +155,89 @@ document.addEventListener('DOMContentLoaded', () => {
       mouseX = -9999;
       mouseY = -9999;
     });
+
+    function drawVectorIcon(ctx, x, y, size, type) {
+      ctx.beginPath();
+      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = 'rgba(54, 125, 138, 0.65)'; // Theme accent with transparency
+      
+      if (type === 'brackets') {
+        // Left bracket '<'
+        ctx.moveTo(x - size * 0.35, y);
+        ctx.lineTo(x - size * 0.1, y - size * 0.35);
+        ctx.moveTo(x - size * 0.35, y);
+        ctx.lineTo(x - size * 0.1, y + size * 0.35);
+        // Right bracket '>'
+        ctx.moveTo(x + size * 0.35, y);
+        ctx.lineTo(x + size * 0.1, y - size * 0.35);
+        ctx.moveTo(x + size * 0.35, y);
+        ctx.lineTo(x + size * 0.1, y + size * 0.35);
+        // Slash '/'
+        ctx.moveTo(x - size * 0.05, y + size * 0.4);
+        ctx.lineTo(x + size * 0.05, y - size * 0.4);
+        ctx.stroke();
+      } 
+      else if (type === 'terminal') {
+        // Prompt '>'
+        ctx.moveTo(x - size * 0.3, y - size * 0.25);
+        ctx.lineTo(x - size * 0.05, y);
+        ctx.lineTo(x - size * 0.3, y + size * 0.25);
+        // Cursor '_'
+        ctx.moveTo(x + size * 0.05, y + size * 0.25);
+        ctx.lineTo(x + size * 0.3, y + size * 0.25);
+        ctx.stroke();
+      }
+      else if (type === 'database') {
+        const rx = size * 0.3;
+        const ry = size * 0.12;
+        // Top ellipse
+        ctx.ellipse(x, y - size * 0.22, rx, ry, 0, 0, Math.PI * 2);
+        // Middle ellipse curve
+        ctx.moveTo(x - rx, y);
+        ctx.ellipse(x, y, rx, ry, 0, 0, Math.PI);
+        // Bottom ellipse curve
+        ctx.moveTo(x - rx, y + size * 0.22);
+        ctx.ellipse(x, y + size * 0.22, rx, ry, 0, 0, Math.PI);
+        // Sides
+        ctx.moveTo(x - rx, y - size * 0.22);
+        ctx.lineTo(x - rx, y + size * 0.22);
+        ctx.moveTo(x + rx, y - size * 0.22);
+        ctx.lineTo(x + rx, y + size * 0.22);
+        ctx.stroke();
+      }
+      else if (type === 'cloud') {
+        const r = size * 0.18;
+        ctx.arc(x - size * 0.18, y + size * 0.08, r, Math.PI * 0.5, Math.PI * 1.5);
+        ctx.arc(x, y - size * 0.08, r * 1.2, Math.PI * 1.0, Math.PI * 2.0);
+        ctx.arc(x + size * 0.18, y + size * 0.08, r, Math.PI * 1.5, Math.PI * 2.5);
+        ctx.closePath();
+        ctx.stroke();
+      }
+      else if (type === 'server') {
+        const w = size * 0.6;
+        const h = size * 0.16;
+        const gap = size * 0.1;
+        // 3 server racks
+        ctx.rect(x - w/2, y - size * 0.3, w, h);
+        ctx.rect(x - w/2, y - size * 0.3 + h + gap, w, h);
+        ctx.rect(x - w/2, y - size * 0.3 + (h + gap) * 2, w, h);
+        ctx.stroke();
+      }
+      else if (type === 'cog') {
+        const ro = size * 0.28;
+        const ri = size * 0.15;
+        ctx.arc(x, y, ro, 0, Math.PI * 2);
+        ctx.moveTo(x + ri, y);
+        ctx.arc(x, y, ri, 0, Math.PI * 2);
+        for (let a = 0; a < Math.PI * 2; a += Math.PI / 4) {
+          const cos = Math.cos(a);
+          const sin = Math.sin(a);
+          ctx.moveTo(x + ro * cos, y + ro * sin);
+          ctx.lineTo(x + (ro + size * 0.08) * cos, y + (ro + size * 0.08) * sin);
+        }
+        ctx.stroke();
+      }
+    }
 
     class Particle {
       constructor(w, h) {
@@ -181,10 +264,10 @@ document.addEventListener('DOMContentLoaded', () => {
           this.color = Math.random() > 0.6 ? '#367D8A' : 'rgba(255, 255, 255, 0.8)';
           this.alpha = Math.random() * 0.15 + 0.15; // Increased visibility (from 0.02 - 0.10)
         } else {
-          this.type = 'device';
-          this.text = devices[Math.floor(Math.random() * devices.length)];
-          this.fontSize = Math.floor(Math.random() * 6) + 13; // 13px to 19px
-          this.alpha = Math.random() * 0.2 + 0.15; // Increased visibility (from 0.03 - 0.15)
+          this.type = 'icon';
+          this.iconType = iconTypes[Math.floor(Math.random() * iconTypes.length)];
+          this.size = Math.floor(Math.random() * 6) + 16; // 16px to 22px
+          this.alpha = Math.random() * 0.12 + 0.12; // Faint, subtle visibility
           this.rotation = Math.random() * Math.PI * 2;
           this.rotationSpeed = (Math.random() - 0.5) * 0.008; // Slow spin
         }
@@ -208,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.x += this.vx;
         this.y += this.vy;
 
-        if (this.type === 'device') {
+        if (this.type === 'icon') {
           this.rotation += this.rotationSpeed;
         }
 
@@ -230,14 +313,11 @@ document.addEventListener('DOMContentLoaded', () => {
           ctx.font = `500 ${this.fontSize}px "Plus Jakarta Sans", sans-serif`;
           ctx.fillStyle = this.color;
           ctx.fillText(this.text, this.x, this.y);
-        } else if (this.type === 'device') {
+        } else if (this.type === 'icon') {
           ctx.save();
           ctx.translate(this.x, this.y);
           ctx.rotate(this.rotation);
-          ctx.font = `${this.fontSize}px Arial`;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(this.text, 0, 0);
+          drawVectorIcon(ctx, 0, 0, this.size, this.iconType);
           ctx.restore();
         }
       }
