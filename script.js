@@ -915,4 +915,47 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
     }
   }, { passive: false });
+
+  // Locked project modal logic
+  const modal = document.getElementById('project-modal');
+  const modalTitle = document.getElementById('modal-project-title');
+  const modalDesc = document.getElementById('modal-project-desc');
+  const closeBtn = document.querySelector('.modal-close-btn');
+
+  if (modal && closeBtn) {
+    document.querySelectorAll('.locked-project').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const title = link.getAttribute('data-title');
+        const desc = link.getAttribute('data-desc');
+        
+        modalTitle.textContent = title;
+        modalDesc.textContent = desc;
+        
+        modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+    });
+
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
 });

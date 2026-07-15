@@ -1041,9 +1041,12 @@ h1.name {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: center; /* Center-aligned for clean crops */
   display: block;
   transition: transform 0.5s ease;
+}
+.project-card-preview img[alt="IntelliTrip"] {
+  object-position: center left; /* Specific override to keep primary mockup UI visual in focus */
 }
 .project-card:hover .project-card-preview img {
   transform: scale(1.04);
@@ -2113,5 +2116,118 @@ footer {
   .praise-card {
     padding: 1.2rem;
   }
+}
+
+
+/* ── GLASSMORPHIC LOCK MODAL ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(1, 0, 1, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 100005;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+.modal-content {
+  background: rgba(19, 51, 54, 0.7);
+  border: 1px solid var(--primary-violet);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 24px;
+  width: 90%;
+  max-width: 500px;
+  padding: 2.2rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+.modal-lock-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(54, 125, 138, 0.1);
+  border: 1px solid rgba(54, 125, 138, 0.3);
+  color: var(--primary-violet);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+.modal-header h3 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin: 0;
+}
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-grey);
+  font-size: 1.8rem;
+  cursor: pointer;
+  position: absolute;
+  right: -0.5rem;
+  top: -0.5rem;
+  transition: color 0.2s;
+  line-height: 1;
+}
+.modal-close-btn:hover {
+  color: var(--text-white);
+}
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.modal-status-msg {
+  font-size: 0.95rem;
+  color: #ff9fb2;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0;
+  background: rgba(236, 72, 153, 0.06);
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(236, 72, 153, 0.15);
+}
+.modal-brief-box {
+  background: rgba(1, 0, 1, 0.4);
+  border: 1px solid var(--border-muted);
+  padding: 1.2rem;
+  border-radius: 12px;
+}
+.modal-brief-box h4 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--primary-violet);
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+.modal-brief-box p {
+  font-size: 0.88rem;
+  color: var(--text-grey);
+  line-height: 1.6;
+  margin: 0;
 }
 
