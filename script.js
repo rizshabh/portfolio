@@ -311,12 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initCanvas();
-
-    // Defer animation start until AFTER the loader exits to prevent lag
-    // The loader removes itself at 2800ms, so we start the canvas then
-    setTimeout(() => {
-      animate();
-    }, 2800);
+    animate();
 
     window.addEventListener('resize', () => {
       initCanvas();
