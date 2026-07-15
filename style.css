@@ -94,6 +94,9 @@ body.loading #hologram-background {
   width: auto;
   object-fit: contain;
   display: block;
+  /* Start invisible — JS reveals it only after chromakey processing completes */
+  opacity: 0;
+  transition: opacity 0.8s ease;
   /* No CSS filter — colors rendered by JS canvas chromakey effect */
 }
 
@@ -214,6 +217,9 @@ body.loaded #intro-loader-bg {
   align-items: center;
   transition: opacity 0.5s ease-out, visibility 0.5s;
   font-family: 'Share Tech Mono', monospace;
+  /* Promote to GPU layer to prevent jank from background JS */
+  will-change: opacity;
+  transform: translateZ(0);
 }
 
 body.loaded #intro-loader {
@@ -230,7 +236,9 @@ body.loaded #intro-loader {
   align-items: center;
   justify-content: space-between;
   gap: 6rem;
-  z-index: 100001; /* Ensure text is above the hologram */
+  z-index: 100001;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .loader-left {

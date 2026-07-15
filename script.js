@@ -311,7 +311,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initCanvas();
-    animate();
+
+    // Defer animation start until AFTER the loader exits to prevent lag
+    // The loader removes itself at 2800ms, so we start the canvas then
+    setTimeout(() => {
+      animate();
+    }, 2800);
 
     window.addEventListener('resize', () => {
       initCanvas();
@@ -629,13 +634,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         ctx.putImageData(imageData, 0, 0);
         const bgImg = document.querySelector('#hologram-background img');
-        if (bgImg) bgImg.src = portraitCanvas.toDataURL('image/png');
+        if (bgImg) {
+          bgImg.src = portraitCanvas.toDataURL('image/png');
+          // Fade in AFTER processing — prevents white flash
+          requestAnimationFrame(() => {
+            bgImg.style.opacity = '1';
+          });
+        }
       } catch(e) { /* tainted canvas fallback */ }
     };
   }
 
-  // Run chroma-key process
-  removePortraitBackground();
+  // Defer chromakey until after loader exits to prevent intro jank
+  setTimeout(() => {
+    removePortraitBackground();
+  }, 2800);
 
   // ── GLOBAL SCROLL SNAPPING / PINNING FOR ALL SECTIONS ──
   const sectionsArray = Array.from(document.querySelectorAll('.scroll-section'));
