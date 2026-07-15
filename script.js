@@ -640,10 +640,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // Defer chromakey until after loader exits to prevent intro jank
-  setTimeout(() => {
-    removePortraitBackground();
-  }, 2800);
+  // Run immediately — opacity:0→1 in CSS/JS already prevents the white flash
+  removePortraitBackground();
 
   // ── GLOBAL SCROLL SNAPPING / PINNING FOR ALL SECTIONS ──
   const sectionsArray = Array.from(document.querySelectorAll('.scroll-section'));
