@@ -173,18 +173,18 @@ document.addEventListener('DOMContentLoaded', () => {
           this.type = 'dot';
           this.radius = Math.random() * 1.8 + 0.8;
           this.color = Math.random() > 0.5 ? '#8B5CF6' : '#EC4899'; // Amethyst or Rose
-          this.alpha = Math.random() * 0.4 + 0.15;
+          this.alpha = Math.random() * 0.4 + 0.25; // Increased visibility
         } else if (rand < 0.85) {
           this.type = 'text';
           this.text = languages[Math.floor(Math.random() * languages.length)];
-          this.fontSize = Math.floor(Math.random() * 4) + 10; // 10px to 14px
+          this.fontSize = Math.floor(Math.random() * 4) + 11; // 11px to 15px
           this.color = Math.random() > 0.6 ? '#8B5CF6' : 'rgba(255, 255, 255, 0.8)';
-          this.alpha = Math.random() * 0.08 + 0.02; // Very faint
+          this.alpha = Math.random() * 0.15 + 0.15; // Increased visibility (from 0.02 - 0.10)
         } else {
           this.type = 'device';
           this.text = devices[Math.floor(Math.random() * devices.length)];
-          this.fontSize = Math.floor(Math.random() * 6) + 12; // 12px to 18px
-          this.alpha = Math.random() * 0.12 + 0.03; // Subtle
+          this.fontSize = Math.floor(Math.random() * 6) + 13; // 13px to 19px
+          this.alpha = Math.random() * 0.2 + 0.15; // Increased visibility (from 0.03 - 0.15)
           this.rotation = Math.random() * Math.PI * 2;
           this.rotationSpeed = (Math.random() - 0.5) * 0.008; // Slow spin
         }
@@ -272,15 +272,15 @@ document.addEventListener('DOMContentLoaded', () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < connectDistance) {
-            const alpha = (1 - dist / connectDistance) * 0.12;
+            const alpha = (1 - dist / connectDistance) * 0.28; // Increased connection line visibility
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             
             // Connect with subtle violet/rose lines
-            ctx.strokeStyle = p1.color === '#8B5CF6' || p2.color === '#8B5CF6' ? 'rgba(139, 92, 246, 0.25)' : 'rgba(236, 72, 153, 0.15)';
+            ctx.strokeStyle = p1.color === '#8B5CF6' || p2.color === '#8B5CF6' ? 'rgba(139, 92, 246, 0.45)' : 'rgba(236, 72, 153, 0.35)';
             ctx.globalAlpha = alpha;
-            ctx.lineWidth = 0.5;
+            ctx.lineWidth = 0.6;
             ctx.stroke();
           }
         }
@@ -292,13 +292,13 @@ document.addEventListener('DOMContentLoaded', () => {
           const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
 
           if (distMouse < cursorRadius) {
-            const alphaMouse = (1 - distMouse / cursorRadius) * 0.22;
+            const alphaMouse = (1 - distMouse / cursorRadius) * 0.45; // Increased cursor line visibility
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(mouseX, mouseY);
-            ctx.strokeStyle = 'rgba(139, 92, 246, 0.4)';
+            ctx.strokeStyle = 'rgba(139, 92, 246, 0.65)';
             ctx.globalAlpha = alphaMouse;
-            ctx.lineWidth = 0.6;
+            ctx.lineWidth = 0.75;
             ctx.stroke();
           }
         }
