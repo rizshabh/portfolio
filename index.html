@@ -93,32 +93,46 @@
     <img src="portrait_bg.png" alt="Typographic HTML Portrait">
   </div>
 
-  <!-- RIGHT-HAND TOC DOT NAVIGATION -->
-  <nav class="side-nav-toc" aria-label="Table of Contents">
-    <a href="#home" class="toc-item active" data-section="home">
-      <span class="toc-label">Home</span>
-      <span class="toc-dot"></span>
-    </a>
-    <a href="#projects" class="toc-item" data-section="projects">
-      <span class="toc-label">Work</span>
-      <span class="toc-dot"></span>
-    </a>
-    <a href="#experience" class="toc-item" data-section="experience">
-      <span class="toc-label">Journey</span>
-      <span class="toc-dot"></span>
-    </a>
-    <a href="#praise" class="toc-item" data-section="praise">
-      <span class="toc-label">Praise</span>
-      <span class="toc-dot"></span>
-    </a>
-    <a href="#skills" class="toc-item" data-section="skills">
-      <span class="toc-label">Skills</span>
-      <span class="toc-dot"></span>
-    </a>
-    <a href="#links" class="toc-item" data-section="links">
-      <span class="toc-label">Links</span>
-      <span class="toc-dot"></span>
-    </a>
+  <!-- LEFT-SIDE SEMI-CIRCULAR NAVIGATION WHEEL -->
+  <nav id="circular-nav" aria-label="Circular Navigation">
+    <div class="circular-wheel-track">
+      <!-- Rotating wheel body -->
+      <div class="circular-wheel-body">
+        <div class="circular-wheel-border"></div>
+        <div class="circular-wheel-glow"></div>
+        <div class="circular-wheel-items">
+          <a href="#home" class="circular-wheel-item active" data-section="home">
+            <i class="fa-solid fa-house"></i>
+            <span class="circular-label">Home</span>
+          </a>
+          <a href="#projects" class="circular-wheel-item" data-section="projects">
+            <i class="fa-solid fa-laptop-code"></i>
+            <span class="circular-label">Work</span>
+          </a>
+          <a href="#experience" class="circular-wheel-item" data-section="experience">
+            <i class="fa-solid fa-route"></i>
+            <span class="circular-label">Journey</span>
+          </a>
+          <a href="#praise" class="circular-wheel-item" data-section="praise">
+            <i class="fa-solid fa-quote-left"></i>
+            <span class="circular-label">Praise</span>
+          </a>
+          <a href="#skills" class="circular-wheel-item" data-section="skills">
+            <i class="fa-solid fa-gears"></i>
+            <span class="circular-label">Skills</span>
+          </a>
+          <a href="#links" class="circular-wheel-item" data-section="links">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span class="circular-label">Links</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- Fixed pointer indicator on the right edge of the wheel (pointing left to active item) -->
+    <div class="circular-nav-indicator" aria-hidden="true">
+      <div class="indicator-arrow"></div>
+      <div class="indicator-glow"></div>
+    </div>
   </nav>
 
   <!-- HEADER -->
@@ -290,15 +304,17 @@
           <div class="timeline-item">
             <span class="timeline-dot-active"></span>
             <div class="timeline-date">06/2025 — 08/2025 (3 Months)</div>
-            <h3>Admin &amp; Web Developer</h3>
-            <h4>Covalent Minds Education Classes (CMEC) · Mumbai, India</h4>
-            <ul>
-              <li>Configured and managed the primary class portal system, optimizing course content delivery templates and assignment tracking logs for over 150+ active students.</li>
-              <li>Collaborated with teachers to upload and align course schedules, maintaining 99.9% database availability on Firebase databases.</li>
-              <li>Refined class site layouts using HTML/CSS/JS and Bootstrap, improving cross-device portal responsiveness and navigation metrics by 40%.</li>
-            </ul>
-            <div class="timeline-tech">
-              <strong>Tech Stack:</strong> HTML5 • CSS3 • JavaScript • Firebase Firestore • Bootstrap • Google Workspaces • REST APIs
+            <div class="timeline-card">
+              <h3>Admin &amp; Web Developer</h3>
+              <h4>Covalent Minds Education Classes (CMEC) · Mumbai, India</h4>
+              <ul>
+                <li>Configured and managed the primary class portal system, optimizing course content delivery templates and assignment tracking logs for over 150+ active students.</li>
+                <li>Collaborated with teachers to upload and align course schedules, maintaining 99.9% database availability on Firebase databases.</li>
+                <li>Refined class site layouts using HTML/CSS/JS and Bootstrap, improving cross-device portal responsiveness and navigation metrics by 40%.</li>
+              </ul>
+              <div class="timeline-tech">
+                <strong>Tech Stack:</strong> HTML5 • CSS3 • JavaScript • Firebase Firestore • Bootstrap • Google Workspaces • REST APIs
+              </div>
             </div>
           </div>
 
@@ -306,13 +322,15 @@
           <div class="timeline-item">
             <span class="timeline-dot"></span>
             <div class="timeline-date">2023 — 2026</div>
-            <h3>B.Sc. Computer Science</h3>
-            <h4>KC College, Mumbai University · Mumbai, India</h4>
-            <ul>
-              <li><strong>CGPA: 9.04 / 10.00</strong></li>
-              <li>Studies in Software Architecture, Database Management (SQL Server, PL/SQL), and Programming Algorithms (Java, Python, C++).</li>
-              <li>Active member of the FIESTRON Tech Guild and Runner-Up at the inter-college challenge Wisdom Wars.</li>
-            </ul>
+            <div class="timeline-card">
+              <h3>B.Sc. Computer Science</h3>
+              <h4>KC College, Mumbai University · Mumbai, India</h4>
+              <ul>
+                <li><strong>CGPA: 9.04 / 10.00</strong></li>
+                <li>Studies in Software Architecture, Database Management (SQL Server, PL/SQL), and Programming Algorithms (Java, Python, C++).</li>
+                <li>Active member of the FIESTRON Tech Guild and Runner-Up at the inter-college challenge Wisdom Wars.</li>
+              </ul>
+            </div>
           </div>
 
         </div>

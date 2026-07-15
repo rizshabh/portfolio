@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Hook interaction listeners for sounds & haptics
-  const interactiveTargets = document.querySelectorAll('a, button, .nav-item, .toc-item, .project-card, .praise-card, .social-link, .skill-tags span, .hero-photo-card');
+  const interactiveTargets = document.querySelectorAll('a, button, .nav-item, .circular-wheel-item, .project-card, .praise-card, .social-link, .skill-tags span, .hero-photo-card');
   
   interactiveTargets.forEach(el => {
     el.addEventListener('mouseenter', () => {
@@ -492,10 +492,125 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // ── INTERSECTION OBSERVER FOR ACTIVE BOTTOM & TOC DOT NAVIGATION ──
+  // ── DYNAMIC SECTION ACCENT SHADING THEMES (Tempest Stormy Teal Palette) ──
+  const sectionThemes = {
+    home: {
+      accent: '#7fa6b3',
+      accentDark: '#446370',
+      accentRgb: '127, 166, 179',
+      bg: '#060f17',
+      glow: 'rgba(127, 166, 179, 0.06)'
+    },
+    projects: {
+      accent: '#d8e2e6',
+      accentDark: '#7fa6b3',
+      accentRgb: '216, 226, 230',
+      bg: '#0a1721',
+      glow: 'rgba(216, 226, 230, 0.06)'
+    },
+    experience: {
+      accent: '#7fa6b3',
+      accentDark: '#446370',
+      accentRgb: '127, 166, 179',
+      bg: '#0e222e',
+      glow: 'rgba(127, 166, 179, 0.06)'
+    },
+    praise: {
+      accent: '#446370',
+      accentDark: '#1d2f38',
+      accentRgb: '68, 99, 112',
+      bg: '#050c12',
+      glow: 'rgba(68, 99, 112, 0.06)'
+    },
+    skills: {
+      accent: '#d8e2e6',
+      accentDark: '#7fa6b3',
+      accentRgb: '216, 226, 230',
+      bg: '#0a1721',
+      glow: 'rgba(216, 226, 230, 0.06)'
+    },
+    links: {
+      accent: '#7fa6b3',
+      accentDark: '#446370',
+      accentRgb: '127, 166, 179',
+      bg: '#060f17',
+      glow: 'rgba(127, 166, 179, 0.06)'
+    }
+  };
+
+  function updateActiveTheme(sectionId) {
+    const theme = sectionThemes[sectionId];
+    if (theme) {
+      const root = document.documentElement;
+      root.style.setProperty('--theme-accent', theme.accent);
+      root.style.setProperty('--theme-accent-dark', theme.accentDark);
+      root.style.setProperty('--theme-accent-rgb', theme.accentRgb);
+      root.style.setProperty('--theme-bg', theme.bg);
+      root.style.setProperty('--theme-glow', theme.glow);
+    }
+  }
+
+  // ── RIGHT-SIDE CIRCULAR DIAL COORDINATES LAYOUT ENGINE ──
   const sections = document.querySelectorAll('.scroll-section');
   const navItems = document.querySelectorAll('.nav-item');
-  const tocItems = document.querySelectorAll('.toc-item');
+  const wheelItems = document.querySelectorAll('.circular-wheel-item');
+  const wheelTrack = document.querySelector('.circular-wheel-items');
+  
+  // Responsive radius — scale down for smaller screens
+  function getWheelRadius() {
+    if (window.innerWidth <= 1024) return 170;
+    return 220;
+  }
+  let radius = getWheelRadius();
+  const angleSpacing = 60; // 60 degrees to distribute 6 items around 360 degrees
+  let currentWheelRotation = 180; // Start aligned to index 0 (180deg pointing left)
+
+  // Initialize circular coordinates for dial menu items
+  function layoutWheelItems() {
+    radius = getWheelRadius();
+    wheelItems.forEach((item, index) => {
+      const angleDeg = index * angleSpacing;
+      const angleRad = (angleDeg * Math.PI) / 180;
+      const x = radius * Math.cos(angleRad);
+      const y = radius * Math.sin(angleRad); // Positive Y: items go clockwise (down then around) on the visible left half
+      
+      item.style.setProperty('--item-x', `${x}px`);
+      item.style.setProperty('--item-y', `${y}px`);
+      item.style.setProperty('--item-angle', `${angleDeg}deg`);
+    });
+  }
+  layoutWheelItems();
+
+  // Re-layout on resize for responsive radius
+  window.addEventListener('resize', () => {
+    layoutWheelItems();
+  });
+
+  function selectWheelItem(sectionId) {
+    let activeIdx = 0;
+    wheelItems.forEach((item, index) => {
+      if (item.getAttribute('data-section') === sectionId) {
+        item.classList.add('active');
+        activeIdx = index;
+      } else {
+        item.classList.remove('active');
+      }
+    });
+
+    if (wheelTrack) {
+      // Rotate so active item aligns to 180° (pointing left into content)
+      const targetAngle = 180 - activeIdx * angleSpacing;
+      
+      // Calculate shortest angular distance for rotation loop
+      let diff = (targetAngle - currentWheelRotation) % 360;
+      if (diff > 180) diff -= 360;
+      if (diff < -180) diff += 360;
+      
+      currentWheelRotation += diff;
+      wheelTrack.style.setProperty('--wheel-rotation', `${currentWheelRotation}deg`);
+    }
+    updateActiveTheme(sectionId);
+  }
 
   const navObserverOptions = {
     root: null,
@@ -507,18 +622,22 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.getAttribute('id');
-        navItems.forEach(item => item.classList.remove('active'));
-        tocItems.forEach(item => item.classList.remove('active'));
+        
+        // Update active class on scroll sections
+        sections.forEach(sec => sec.classList.remove('active'));
+        entry.target.classList.add('active');
+        
+        // Update bottom mobile nav items if present
+        navItems.forEach(item => {
+          if (item.getAttribute('data-section') === id) {
+            item.classList.add('active');
+          } else {
+            item.classList.remove('active');
+          }
+        });
 
-        const activeNav = document.querySelector(`.nav-item[data-section="${id}"]`);
-        if (activeNav) {
-          activeNav.classList.add('active');
-        }
-
-        const activeToc = document.querySelector(`.toc-item[data-section="${id}"]`);
-        if (activeToc) {
-          activeToc.classList.add('active');
-        }
+        // Update left circular navigation wheel rotation
+        selectWheelItem(id);
       }
     });
   }, navObserverOptions);
@@ -543,13 +662,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ── NAVBAR SMOOTH CLICK SCROLLING ──
-  const allScrollLinks = document.querySelectorAll('.nav-item, .toc-item');
+  const allScrollLinks = document.querySelectorAll('.nav-item, .circular-wheel-item');
   allScrollLinks.forEach(item => {
     item.addEventListener('click', function (e) {
       e.preventDefault();
       const targetId = this.getAttribute('href');
+      const sectionId = this.getAttribute('data-section') || (targetId ? targetId.replace('#', '') : null);
       const targetSection = document.querySelector(targetId);
       if (targetSection) {
+        // Update scroll jacking index
+        const sectionIdx = sectionsArray.indexOf(targetSection);
+        if (sectionIdx !== -1) {
+          isTransitioning = true;
+          lastTransitionTime = Date.now();
+          currentSectionIndex = sectionIdx;
+          setTimeout(() => {
+            isTransitioning = false;
+            wheelDeltaSum = 0;
+          }, 700);
+        }
+
+        // Immediately rotate wheel and update theme
+        if (sectionId) {
+          selectWheelItem(sectionId);
+        }
+
         targetSection.scrollIntoView({
           behavior: 'smooth'
         });
@@ -783,9 +920,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  // Snapping transition helper
+  // Snapping transition helper (with infinite looping support)
   function transitionToSection(index) {
-    if (index < 0 || index >= sectionsArray.length) return;
+    if (index < 0) {
+      index = sectionsArray.length - 1; // Wrap around to the last section
+    } else if (index >= sectionsArray.length) {
+      index = 0; // Wrap around to the first section
+    }
+    
     isTransitioning = true;
     lastTransitionTime = Date.now();
     currentSectionIndex = index;
@@ -888,17 +1030,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (Math.abs(wheelDeltaSum) >= wheelThreshold) {
       if (wheelDeltaSum > 0) {
-        // Scroll down: next section
-        if (currentSectionIndex < sectionsArray.length - 1) {
-          e.preventDefault();
-          transitionToSection(currentSectionIndex + 1);
-        }
+        // Scroll down: next section (looping)
+        e.preventDefault();
+        transitionToSection(currentSectionIndex + 1);
       } else {
-        // Scroll up: previous section
-        if (currentSectionIndex > 0) {
-          e.preventDefault();
-          transitionToSection(currentSectionIndex - 1);
-        }
+        // Scroll up: previous section (looping)
+        e.preventDefault();
+        transitionToSection(currentSectionIndex - 1);
       }
     } else {
       // Pin viewport scroll while delta accumulates
@@ -980,15 +1118,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (Math.abs(deltaY) >= swipeThreshold) {
       if (deltaY > 0) {
-        if (currentSectionIndex < sectionsArray.length - 1) {
-          e.preventDefault();
-          transitionToSection(currentSectionIndex + 1);
-        }
+        // Swipe up = scroll down (looping)
+        e.preventDefault();
+        transitionToSection(currentSectionIndex + 1);
       } else {
-        if (currentSectionIndex > 0) {
-          e.preventDefault();
-          transitionToSection(currentSectionIndex - 1);
-        }
+        // Swipe down = scroll up (looping)
+        e.preventDefault();
+        transitionToSection(currentSectionIndex - 1);
       }
     } else {
       // Pin during active swipe
