@@ -172,13 +172,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (rand < 0.6) {
           this.type = 'dot';
           this.radius = Math.random() * 1.8 + 0.8;
-          this.color = Math.random() > 0.5 ? '#8B5CF6' : '#EC4899'; // Amethyst or Rose
+          this.color = Math.random() > 0.5 ? '#367D8A' : '#285F6B'; // Amethyst or Rose
           this.alpha = Math.random() * 0.4 + 0.25; // Increased visibility
         } else if (rand < 0.85) {
           this.type = 'text';
           this.text = languages[Math.floor(Math.random() * languages.length)];
           this.fontSize = Math.floor(Math.random() * 4) + 11; // 11px to 15px
-          this.color = Math.random() > 0.6 ? '#8B5CF6' : 'rgba(255, 255, 255, 0.8)';
+          this.color = Math.random() > 0.6 ? '#367D8A' : 'rgba(255, 255, 255, 0.8)';
           this.alpha = Math.random() * 0.15 + 0.15; // Increased visibility (from 0.02 - 0.10)
         } else {
           this.type = 'device';
@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.lineTo(p2.x, p2.y);
             
             // Connect with subtle violet/rose lines
-            ctx.strokeStyle = p1.color === '#8B5CF6' || p2.color === '#8B5CF6' ? 'rgba(139, 92, 246, 0.45)' : 'rgba(236, 72, 153, 0.35)';
+            ctx.strokeStyle = p1.color === '#367D8A' || p2.color === '#367D8A' ? 'rgba(54, 125, 138, 0.45)' : 'rgba(40, 95, 107, 0.35)';
             ctx.globalAlpha = alpha;
             ctx.lineWidth = 0.6;
             ctx.stroke();
@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(mouseX, mouseY);
-            ctx.strokeStyle = 'rgba(139, 92, 246, 0.65)';
+            ctx.strokeStyle = 'rgba(54, 125, 138, 0.65)';
             ctx.globalAlpha = alphaMouse;
             ctx.lineWidth = 0.75;
             ctx.stroke();
