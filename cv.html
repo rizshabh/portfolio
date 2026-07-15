@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rishabh Chaurasiya — Resume</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ── DESIGN SYSTEM & CONSTANTS ── */
+    :root {
+      --primary-color: #1E293B; /* Slate 800 - Professional dark */
+      --accent-color: #4F46E5; /* Indigo 600 - Subtle color accent */
+      --text-dark: #111827; /* Gray 900 - High contrast text */
+      --text-medium: #374151; /* Gray 700 - Body text */
+      --text-muted: #6B7280; /* Gray 500 - Metadata */
+      --border-color: #D1D5DB; /* Gray 300 - Divider lines */
+      --bg-dark: #090611;
+      --font-main: 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-main);
+      color: var(--text-medium);
+      background-color: var(--bg-dark);
+      line-height: 1.45;
+      padding: 3rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* ── USER ACTIONS BAR ── */
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      z-index: 10;
+    }
+
+    .btn-action {
+      background: linear-gradient(135deg, #4F46E5 0%, #3B82F6 100%);
+      color: #FFFFFF;
+      padding: 0.75rem 1.6rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 10px 20px rgba(79, 70, 229, 0.25);
+      transition: all 0.25s ease;
+    }
+
+    .btn-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(79, 70, 229, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #CBD5E1;
+      box-shadow: none;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+    }
+
+    /* ── STANDARD SINGLE-PAGE RESUME CONTAINER ── */
+    .cv-container {
+      background-color: #FFFFFF;
+      width: 100%;
+      max-width: 800px;
+      min-height: 1040px; /* Standard A4/Letter ratios */
+      padding: 3.5rem 3.5rem;
+      border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+
+    /* ── HEADER STYLE (STANDARD CENTERED) ── */
+    header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      letter-spacing: -0.5px;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-size: 0.82rem;
+      color: var(--text-medium);
+    }
+
+    .contact-links a {
+      color: var(--text-medium);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .contact-links a:hover {
+      color: var(--accent-color);
+      text-decoration: underline;
+    }
+
+    .divider {
+      color: var(--border-color);
+      user-select: none;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      margin-bottom: 1.3rem;
+    }
+
+    .section-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      border-bottom: 1.5px solid var(--text-dark);
+      padding-bottom: 0.15rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .summary-text {
+      font-size: 0.85rem;
+      color: var(--text-medium);
+      text-align: justify;
+      line-height: 1.5;
+    }
+
+    /* ── ITEM SUB-BLOCKS ── */
+    .item {
+      margin-bottom: 0.9rem;
+    }
+
+    .item:last-child {
+      margin-bottom: 0;
+    }
+
+    .item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 0.15rem;
+    }
+
+    .bold-text {
+      font-weight: 700;
+      color: var(--text-dark);
+      font-size: 0.88rem;
+    }
+
+    .project-links-resume {
+      font-weight: 500;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-left: 0.4rem;
+    }
+
+    .project-links-resume a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    .project-links-resume a:hover {
+      text-decoration: underline;
+    }
+
+    .italic-text {
+      font-style: italic;
+      color: var(--text-medium);
+      font-size: 0.85rem;
+    }
+
+    .meta-text {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .item-desc {
+      list-style-type: disc;
+      padding-left: 1.2rem;
+      font-size: 0.82rem;
+      color: var(--text-medium);
+      line-height: 1.45;
+      margin-top: 0.2rem;
+    }
+
+    .item-desc li {
+      margin-bottom: 0.15rem;
+    }
+
+    .item-desc li:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── SKILLS ── */
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .skill-row {
+      font-size: 0.82rem;
+      color: var(--text-medium);
+      line-height: 1.4;
+    }
+
+    .skill-row strong {
+      color: var(--text-dark);
+      font-weight: 700;
+      display: inline-block;
+      width: 140px;
+    }
+
+    /* ── PRINT MEDIA DIRECTIVES ── */
+    @media print {
+      body {
+        background-color: #FFFFFF;
+        padding: 0;
+        color: #000000;
+      }
+
+      .controls {
+        display: none;
+      }
+
+      .cv-container {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+        border-radius: 0;
+        min-height: auto;
+      }
+
+      .section-title {
+        border-bottom-color: #000000;
+      }
+
+      @page {
+        size: letter;
+        margin: 0.65in;
+      }
+    }
+
+    /* Responsive adjustments for viewport */
+    @media (max-width: 768px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
+      .cv-container {
+        padding: 2rem 1.5rem;
+      }
+      .item-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.1rem;
+      }
+      .skill-row strong {
+        width: 100%;
+        margin-bottom: 0.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ACTIONS MENUS -->
+  <div class="controls">
+    <button onclick="window.print()" class="btn-action">
+      <i class="fa-solid fa-print"></i> Print / Save as PDF
+    </button>
+    <a href="index.html" class="btn-action btn-secondary">
+      <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+    </a>
+  </div>
+
+  <!-- STANDARDIZED ATS SINGLE-PAGE RESUME -->
+  <div class="cv-container">
+    
+    <!-- HEADER -->
+    <header>
+      <h1>Rishabh Chaurasiya</h1>
+      <div class="contact-links">
+        <a href="mailto:r786chaurasiya@gmail.com">r786chaurasiya@gmail.com</a>
+        <span class="divider">|</span>
+        <a href="tel:+919619445375">+91 9619445375</a>
+        <span class="divider">|</span>
+        <span>Mumbai, India</span>
+        <span class="divider">|</span>
+        <a href="https://github.com/rizshabh" target="_blank">github.com/rizshabh</a>
+      </div>
+    </header>
+
+    <!-- PROFILE SUMMARY -->
+    <div class="section">
+      <div class="section-title">Professional Summary</div>
+      <p class="summary-text">
+        B.Sc. Computer Science graduate (9.04/10 CGPA) with hands-on experience building, scaling, and deploying full-stack web applications. Skilled in engineering high-performance web systems, real-time WebSocket applications, and robust API endpoints. Passionate about clean code architecture and seamless AI model integrations.
+      </p>
+    </div>
+
+    <!-- EDUCATION -->
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="item">
+        <div class="item-row">
+          <span class="bold-text">KC College, Mumbai University</span>
+          <span class="meta-text">Mumbai, India</span>
+        </div>
+        <div class="item-row">
+          <span class="italic-text">Bachelor of Science in Computer Science (B.Sc. CS)</span>
+          <span class="meta-text">2023 — 2026</span>
+        </div>
+        <ul class="item-desc">
+          <li><strong>CGPA:</strong> 9.04 / 10.00</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- WORK EXPERIENCE -->
+    <div class="section">
+      <div class="section-title">Experience</div>
+      
+      <div class="item">
+        <div class="item-row">
+          <span class="bold-text">Covalent Minds Education Classes (CMEC)</span>
+          <span class="meta-text">Mumbai, India</span>
+        </div>
+        <div class="item-row">
+          <span class="italic-text">Admin &amp; Web Developer</span>
+          <span class="meta-text">June 2025 — August 2025</span>
+        </div>
+        <ul class="item-desc">
+          <li>Configured and managed the primary class portal system, optimizing course content delivery templates and assignment tracking logs for over 150+ active students.</li>
+          <li>Collaborated with teachers to upload and align course schedules, maintaining 99.9% database availability on Firebase Firestore.</li>
+          <li>Refined class site layouts using HTML/CSS/JS and Bootstrap, improving cross-device portal responsiveness and navigation metrics by 40%.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- KEY PROJECTS -->
+    <div class="section">
+      <div class="section-title">Projects</div>
+      
+      <!-- IntelliTrip -->
+      <div class="item">
+        <div class="item-row">
+          <span class="bold-text">IntelliTrip — AI Travel Planner <span class="project-links-resume">(<a href="https://github.com/rizshabh" target="_blank">GitHub</a> | <a href="https://intellitrip-3yzx.onrender.com/index.html" target="_blank">Live Demo</a>)</span></span>
+          <span class="meta-text">Node.js, PostgreSQL, Gemini AI, Groq API, Express, JWT</span>
+        </div>
+        <ul class="item-desc">
+          <li>Designed and built an AI travel itinerary platform with a dual-LLM fallback system (Gemini → Groq) to ensure uninterrupted generation during API outages or rate limits.</li>
+          <li>Configured secure JWT authorization, budget receipt tracking grids, and dynamic PDF exports for created travel itineraries.</li>
+        </ul>
+      </div>
+
+      <!-- FlowChat -->
+      <div class="item">
+        <div class="item-row">
+          <span class="bold-text">FlowChat — WebSocket Messaging Site <span class="project-links-resume">(<a href="https://github.com/rizshabh/flow-chat" target="_blank">GitHub</a> | <a href="https://flow-chat-omega.vercel.app/" target="_blank">Live Demo</a>)</span></span>
+          <span class="meta-text">React, Node.js, Express, Socket.io, MongoDB, Mongoose</span>
+        </div>
+        <ul class="item-desc">
+          <li>Engineered a full-stack real-time chat application with Socket.io supporting live messages with latencies under 100ms.</li>
+          <li>Implemented mongoose proxy database fallback handlers, typing indicators, user online states, and message delivery checklists.</li>
+        </ul>
+      </div>
+
+      <!-- Accredian Enterprise -->
+      <div class="item">
+        <div class="item-row">
+          <span class="bold-text">Accredian Enterprise — Modular Portal <span class="project-links-resume">(<a href="https://github.com/rizshabh" target="_blank">GitHub</a> | <a href="https://accredian-enterprise-three.vercel.app" target="_blank">Live Demo</a>)</span></span>
+          <span class="meta-text">Next.js 14, TypeScript, Tailwind CSS, REST APIs</span>
+        </div>
+        <ul class="item-desc">
+          <li>Shipped a responsive, production-ready marketing layout built on Next.js 14 App Router layout components.</li>
+          <li>Integrated custom lead capture POST api routes connecting forms to a mock storage pipeline.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- TECHNICAL SKILLS -->
+    <div class="section">
+      <div class="section-title">Technical Skills</div>
+      <div class="skills-list">
+        <div class="skill-row">
+          <strong>Languages:</strong> JavaScript, TypeScript, Python, SQL (PostgreSQL, MySQL), HTML5, CSS3
+        </div>
+        <div class="skill-row">
+          <strong>Frameworks:</strong> Node.js, Next.js, React, Express, Socket.io, Bootstrap, Tailwind CSS
+        </div>
+        <div class="skill-row">
+          <strong>Tools &amp; Databases:</strong> Docker, Git, GitHub, PostgreSQL, MongoDB, Firebase, Firestore, REST APIs
+        </div>
+        <div class="skill-row">
+          <strong>Core Strengths:</strong> Clean Architecture (OOP/SOLID), Fault-Tolerant Systems, Real-Time Architecture, Problem Solving
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
