@@ -1733,7 +1733,7 @@ body.loaded #circular-nav {
   position: absolute;
   left: calc(50% + var(--item-x, 0px));
   top: calc(50% + var(--item-y, 0px));
-  transform: translate(-50%, -50%) rotate(calc(-1 * (var(--item-angle, 0deg) + var(--wheel-rotation, 180deg)))) scale(0.92);
+  transform: translate(-50%, -50%) rotate(calc(-1 * var(--wheel-rotation, 180deg))) scale(0.92);
   transform-origin: center center;
   display: flex;
   align-items: center;
